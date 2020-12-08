@@ -19,11 +19,12 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
-    createProduct();
+    landingPage();
 });
 
 const landingPage = () => {
     inquirer.prompt({
+
 
             type: "list",
             message: "What would you like to do?",
@@ -65,8 +66,21 @@ const landingPage = () => {
 
     })
 
+   
+
+
+
 }
 
+const viewEmployees = () =>{
+    connection.query("SELECT * FROM employee", function(err, res) {
+        if (err) throw err;
+        
+
+        console.table(res);
+        
+      });
+    }
 
 
 
@@ -80,7 +94,3 @@ const landingPage = () => {
 
 
 
-
-
-landingPage();
-connection.end();
