@@ -35,7 +35,7 @@ function landingPage() {
             "Add Departments",
             "Add Roles",
             "Add Employees",
-            "Update Employee Roles",
+            "Update Employee Role",
             "Exit"
         ]
     })
@@ -66,7 +66,7 @@ function landingPage() {
                     addDept();
                     break;
 
-                case "Update Employee Roles":
+                case "Update Employee Role":
                     updateEmp();
                     break;
                 case "Exit":
@@ -223,7 +223,44 @@ const addDept = () => {
 }
 
 
+const updateEmp = () => {
 
+    inquirer
+        .prompt([
+            {
+                name: "id",
+                type: "input",
+                message: "What is the Employee Number you want to update the role of?"
+            },
+            {
+                name: "role_id",
+                type: "input",
+                message: "What is the new role (1 -Sales Lead, 2 - Lead Engineer, 3 - Software Engineer, 4 - Account Manager, 5 - Accountant, 6 - Legal Team Lead, 7 - Sales Person, 8 -Laywyer) "
+            },
+
+        ])
+        .then(function (answer) {
+            connection.query(
+                "UPDATE employee SET ? WHERE ?",
+               [ {
+                    role_id: answer.role_id
+
+                },
+                {
+                    id: answer.id
+                }],
+                function (err) {
+                    if (err) throw err;
+                    console.log("Employee Updated!");
+                    landingPage();
+                }
+            );
+
+        });
+
+
+
+}
 
 
 
