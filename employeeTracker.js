@@ -43,7 +43,7 @@ function landingPage() {
             switch (answer.action) {
                 case "View Employees":
                     viewEmployees();
-                    landingPage();
+                    
                     break;
 
                 case "View Roles":
