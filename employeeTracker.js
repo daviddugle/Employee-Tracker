@@ -22,72 +22,116 @@ connection.connect(function (err) {
     landingPage();
 });
 
-const landingPage = () => {
+function landingPage(){
     inquirer.prompt({
 
-
-            type: "list",
-            message: "What would you like to do?",
-            choices: [
+        name: "action",
+        type: "list",
+        message: "What would you like to do?",
+        choices: [
             "View Employees",
-            "View all Employees by Department",
-            "View all Employees by Manager",
-            "Add Employee",
-            "Remove Employee",
-            "Update Employee Role",
-            "Update Employee Manager",
-            "View all Roles"],
-            name: "next",
-
+            "View Roles",
+            "View Departments",
+            "Add Departments",
+            "Add Roles",
+            "Add Employees",
+            "Update Employee Roles",
+            "Exit"
+        ]
     })
-    .then(({next}) =>{
+        .then(function (answer) {
+            switch (answer.action) {
+                case "View Employees":
+                    viewEmployees();
+                    landingPage();
+                    break;
 
-        if (next === "View Employees"){
-            viewEmployees();
-        }
-        else if(next === "View all Employees by Department"){
-            empByDept();
-        }
-        else if(next === "View all Employees by Manager"){
-            empByMgr();
-        }
-        else if(next === "Add Employee"){
-            addEmp();
-        }
-        else if(next === "Update Employee Role"){
-            updateRole();
-        }
-        else if(next === "Update Employee Manager"){
-            updateMgr();
-        }
-        else if(next === "View all Roles"){
-            viewAll();
-        }
+                case "View Roles":
+                    viewRoles();
+                    break;
 
-    })
+                case "View Departments":
+                    viewDept();
+                    break;
 
-   
+                case "Add Employee":
+                    addEmp();
+                    break;
 
+                case "Add Roles":
+                    addRole();
+                    break;
 
+                case "Add Departments":
+                    updateMgr();
+                    break;
 
-}
-
-const viewEmployees = () =>{
-    connection.query("SELECT * FROM employee", function(err, res) {
-        if (err) throw err;
-        
-
-        console.table(res);
-        
-      });
+                case "Update Employee Roles":
+                    updateEmp();
+                    break;
+                case "Exit":
+                    exitFunc();
+                    break;    
+            }
+        });
     }
 
 
+const viewEmployees = () => {
+    // var query ="SELECT employee.id, employee.first_name, employee_last_name, employee.role_id, role.id, role.title";
+    // query += "FROM employee INNER JOIN role ON (emloyee.role_id = role.id AND role.title";
+
+    connection.query("SELECT * FROM employee", function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        landingPage();
+    });
+}
+const viewRoles = () =>{
+    // var query = "SELECT "
+    connection.query("SELECT * FROM role", function (err, res){
+        if (err) throw err;
+        console.table(res);
+        landingPage();
+
+    })
+
+}
+const viewDept = () =>{
+    connection.query("SELECT * FROM department", function (err, res){
+        if (err) throw err;
+        console.table(res);
+        landingPage();
+
+    })
+}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function exitFunc(){
+    console.log("Goodbye!");
+    connection.end();
+}
 
 
 
