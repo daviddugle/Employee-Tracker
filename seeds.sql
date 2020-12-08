@@ -22,3 +22,25 @@ INSERT INTO employee (first_name, last_name, role_id, manager_id)
 values ('Bryan', "McGillicutty", 7, 12);
 INSERT INTO employee (first_name, last_name, role_id, manager_id) 
 values ('Sarah', "Lincoln", 6, 15);
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('Brandon', "Webb", 1, 14);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('Hulk', "Hogan", 2, 10);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('Ric', "Flair", 4, 12);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('Jose', "Canseco", 5, 15);
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('Walter', "White", 7, 12);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('Frank', "Basso", 6, 15);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('Tony', "Hnizdo", 1, 14);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('Jeff', "Greene", 2, 10);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('Tammy', "Trailer", 4, 12);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+values ('James', "Hatfield", 5, 15);
